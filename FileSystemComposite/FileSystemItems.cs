@@ -49,15 +49,5 @@ namespace Composite.FileSystemComposite
             Console.WriteLine($"{new string(' ', indent)}{Name} ({GetSize()}KB)");
 
         }
-
-        public override void Add(FileSystemItem item)
-        {
-            throw new NotSupportedException();
-        }
-
-        public override void Remove(string name)
-        {
-            throw new NotSupportedException();
-        }
     }
 }

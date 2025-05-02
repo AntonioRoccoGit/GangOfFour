@@ -13,8 +13,15 @@ namespace Composite.FileSystemComposite
         public abstract int GetSize();
         public abstract void Display(int indent = 0);
      
-        public abstract void Add(FileSystemItem item);
-        public abstract void Remove(string name);
+        public virtual void Add(FileSystemItem item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Remove(string name)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
