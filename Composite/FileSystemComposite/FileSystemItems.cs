@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Composite.FileSystemComposite
 {
-    public class FolderItem(string name) : FileSystemItem
+    public class FolderItem(string name) : FileSystemComponent
     {
         public override string Name { get; } = name;
-        public IReadOnlyList<FileSystemItem> Items => _items;
+        public IReadOnlyList<FileSystemComponent> Items => _items;
 
-        private List<FileSystemItem> _items = new();
+        private readonly List<FileSystemComponent> _items = [];
 
+        public override void Add(FileSystemComponent item) => _items.Add(item);
 
         public override int GetSize() => Items.Sum(item => item.GetSize());
 
@@ -26,7 +27,6 @@ namespace Composite.FileSystemComposite
             }
         }
 
-        public override void Add(FileSystemItem item) => _items.Add(item);
 
         public override void Remove(string name)
         {
@@ -37,7 +37,7 @@ namespace Composite.FileSystemComposite
         }
     }
 
-    public class FileItem(string name, int size) : FileSystemItem
+    public class FileItem(string name, int size) : FileSystemComponent
     {
         public override string Name { get; } = name;
         public int Size { get; set; } = size;

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Composite.FileSystemComposite
 {
-    public abstract class FileSystemItem
+    public abstract class FileSystemComponent
     {
         public abstract string Name { get; }
         
         public abstract int GetSize();
         public abstract void Display(int indent = 0);
      
-        public virtual void Add(FileSystemItem item)
+        public virtual void Add(FileSystemComponent item)
         {
             throw new NotImplementedException();
         }
