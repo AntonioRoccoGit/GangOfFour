@@ -7,7 +7,8 @@ namespace Strategy
     {
         static void Main(string[] args)
         {
-            //CalculatorStrategy();
+            CalculatorStrategy();
+            Console.WriteLine();
             PaymentStrategy();
         }
 
@@ -36,15 +37,17 @@ namespace Strategy
 
         private static void PaymentStrategy()
         {
-
+            Console.WriteLine("Impostata carta di credito");
             var pagamentoConCarta = new CrediCardPayment("Mario Rossi", "123", "4569789456561234");
             var context = new PaymentContext(pagamentoConCarta);
             context.Execute(126.50f);
 
+            Console.WriteLine("Impostata paypal");
             var pagamentoPaypal = new PayPalPayment("m.rossi@gmail.com");
             context.SetStrategy(pagamentoPaypal);
             context.Execute(86.50f);
 
+            Console.WriteLine("Impostata wallet virtuale");
             var pagamentoBitcoin = new BitcoinPayment("0x5832197316548711798");
             context.SetStrategy(pagamentoBitcoin);
             context.Execute(15.78f);
