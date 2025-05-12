@@ -1,4 +1,5 @@
 ﻿using Strategy.CalcolatriceStrategy;
+using Strategy.PaymentStrategy;
 
 namespace Strategy
 {
@@ -6,7 +7,8 @@ namespace Strategy
     {
         static void Main(string[] args)
         {
-            CalculatorStrategy();
+            //CalculatorStrategy();
+            PaymentStrategy();
         }
 
         private static void CalculatorStrategy()
@@ -32,6 +34,21 @@ namespace Strategy
             Console.WriteLine(calcolatrice.Calculate(num1, num2));
         }
 
+        private static void PaymentStrategy()
+        {
+
+            var pagamentoConCarta = new CrediCardPayment("Mario Rossi", "123", "4569789456561234");
+            var context = new PaymentContext(pagamentoConCarta);
+            context.Execute(126.50f);
+
+            var pagamentoPaypal = new PayPalPayment("m.rossi@gmail.com");
+            context.SetStrategy(pagamentoPaypal);
+            context.Execute(86.50f);
+
+            var pagamentoBitcoin = new BitcoinPayment("0x5832197316548711798");
+            context.SetStrategy(pagamentoBitcoin);
+            context.Execute(15.78f);
+        }
 
     }
 }
